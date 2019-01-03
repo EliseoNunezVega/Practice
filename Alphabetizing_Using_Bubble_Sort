@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+#define NUM 10
+#define LEN 20
+
+void EnterText();
+void PrintText();
+int CompareStrings();
+void SwitchStrings();
+void BubbleSort();
+
+
+void EnterText(char Text[NUM][LEN]){
+    
+    int i;
+    
+    for (i=0; i<NUM; i++){
+        printf("Enter String #%d:", i+1);
+        scanf("%s", Text[i]);
+}
+}
+
+void PrintText(char Text[NUM][LEN]){
+    
+    int i;
+    
+    printf("\nNow Alphabetized:\n\n");
+    
+    for(i=0; i<NUM; i++){
+        printf("String #%d: %s\n", i+1, Text[i]);
+    }
+}
+
+int CompareStrings(char s1[LEN], char s2[LEN]){
+    
+    int i;
+    for( i=0; i<LEN; i++){
+        if ( s1[i] > s2[i]){
+            return(1);
+        }
+        if(s1[i]< s2[i]){
+            return(-1);
+        }
+        if(s1[i]==0 || s2[i] == 0){
+            break;
+        }
+    }
+}
+
+void SwitchStrings(char s1[LEN], char s2[LEN]){
+    int i;
+    char c;
+    
+    for (i=0; i<LEN; i++){
+        c = s1[i];
+        s1[i] = s2[i];
+        s2[i] = c;
+    }
+}
+
+void BubbleSort(char Text[NUM][LEN]){
+    int i, j;
+    
+    for(i=0; i<NUM-1; i++){
+        for(j=i+1; j<NUM;j++){
+            if(CompareStrings(Text[i],Text[j])>0){
+                SwitchStrings(Text[i],Text[j]);
+            }
+        }
+    }
+}
+
+int main()
+{
+    char Text[NUM][LEN];
+    
+    EnterText(Text);
+    BubbleSort(Text);
+    PrintText(Text);
+    
+  
+}
